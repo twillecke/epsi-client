@@ -31,7 +31,7 @@ interface PatientProfileProps {
 function PatientProfile({patients}: PatientProfileProps ) {
   return (
     <div className="container mx-auto mt-2">
-      <h1 className="text-2xl font-bold mb-4">Patient Information</h1>
+      <h1 className="text-2xl font-bold mb-4">Patients Board</h1>
       {patients.map((patient:any, index: any) => (
         <PatientInfo key={index} patient={patient} />
       ))}

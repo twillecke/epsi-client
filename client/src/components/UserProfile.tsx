@@ -128,14 +128,14 @@ function UserProfile() {
 	return (
 		<div className="flex justify-center items-center h-screen">
 			<div className="bg-neutral-600 p-10 rounded-md">
-				<h1 className="mb-4">Welcome {currentUser.username}</h1>
+				<h1 className="mb-4">Welcome <b>{currentUser.username}</b></h1>
 				<div className="justify-end">
 					<p>You've successfully logged in!</p>
 					{/* <br /> */}
 					<p>Your email is: {currentUser.email_address}</p>
 					{/* <p>You're with us since: {currentUser.signup_date}</p> */}
 				</div>
-				<div className="rounded-t-xl overflow-hidden bg-gradient-to-r p-10">
+				<div className="rounded-t-xl mt-4 overflow-hidden bg-gradient-to-r">
 				<PatientProfile patients={patients}/>
 				</div>
 				<div className="flex justify-between">
