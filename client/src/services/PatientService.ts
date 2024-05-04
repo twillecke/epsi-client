@@ -7,6 +7,11 @@ class PatientService {
 	getAllPatients(userId: string) {
 		return axios.get(API_URL + "users/" + userId + "/patients", { headers: authHeader() });
 	}
+
+	deletePatientById(userId: string, cpf: string) {
+		return axios.delete(API_URL + "users/" + userId + "/patients/" + cpf, { headers: authHeader() });
+	}
+
 }
 
 export default new PatientService();

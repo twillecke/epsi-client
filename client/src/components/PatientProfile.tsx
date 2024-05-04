@@ -28,7 +28,7 @@ interface PatientProfileProps {
   patients: Patients;
 }
 
-function PatientProfile({patients}: PatientProfileProps ) {
+function PatientProfile({patients}: PatientProfileProps) {
   return (
     <div className="container mx-auto mt-2">
       <h1 className="text-2xl font-bold mb-4">Patients Board</h1>

@@ -1,6 +1,22 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import PatientService from "../services/PatientService";
 
 function PatientInfo({ patient }:any) {
+
+  const navigate = useNavigate();
+
+	function handleDeletePatient() {
+		const userData = JSON.parse(localStorage.getItem("username"));
+
+		if (userData) {
+			PatientService.deletePatientById(userData.userId, patient.cpf.value);
+			navigate("/user-profile");
+		} else {
+			console.error("User data not found in localStorage");
+		}
+	}
+
+
   return (
     <div className="bg-gray-700 mb-4 rounded-lg p-4 shadow-md">
       <h2 className="text-xl font-bold mb-4">{patient.name.value}</h2>
@@ -14,6 +30,12 @@ function PatientInfo({ patient }:any) {
           <p className="font-semibold">Province:</p>
           <p className="font-semibold">Email Address:</p>
           <p className="font-semibold">Address:</p>
+          <button
+						className="mt-6 rounded-md bg-red-800 hover:bg-red-900"
+						onClick={handleDeletePatient}
+					>
+						Delete
+					</button>
         </div>
         <div>
           <p>{patient.birthdate.value}</p>
