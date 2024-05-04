@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import PatientService from "../services/PatientService";
 
 export default function PatientRegister() {
   const [formData, setFormData] = useState({
-    psychologistId: "c9bfe8a8-5a44-4ce2-ba38-332dab616446",
+    psychologistId: "",
     name: "",
     birthdate: "",
     cpf: "",
@@ -17,7 +18,7 @@ export default function PatientRegister() {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -25,10 +26,24 @@ export default function PatientRegister() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
+    const userData = JSON.parse(localStorage.getItem("username"));
+    if (!userData) {
+      console.error("UserId not found");
+      return;
+    }
+    const userId = userData.userId;
+
     e.preventDefault();
-    // Here you can handle sending the formData to your backend
-    console.log(formData);
+    const formattedBirthdate = new Date(formData.birthdate).toLocaleDateString('en-CA', { timeZone: 'UTC' });
+    const updatedFormData = {
+      ...formData,
+      birthdate: formattedBirthdate,
+      psychologistId: userId
+    };
+    console.log("Sent Form Data", updatedFormData);
+    PatientService.saveNewPatient(userId, updatedFormData);
+    navigate("/user-profile");
   };
 
   function handleReturnHome() {

@@ -104,8 +104,8 @@ function UserProfile() {
 		fetchUserProfileData();
 	}, [navigate]);
 
-	function handleDeletePatient(cpf) {
-    const userData = JSON.parse(localStorage.getItem("username"));
+	function handleDeletePatient(cpf: string) {
+    const userData = JSON.parse(localStorage.getItem("username") ?? "null");
 
     if (userData) {
       // Delete patient by CPF
