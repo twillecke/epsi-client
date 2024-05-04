@@ -12,6 +12,9 @@ class PatientService {
 		return axios.delete(API_URL + "users/" + userId + "/patients/" + cpf, { headers: authHeader() });
 	}
 
+	saveNewPatient(userId: string, patient: any) {
+		return axios.post(API_URL + "users/" + userId + "/patients", patient, { headers: authHeader() });
+	}
 }
 
 export default new PatientService();
