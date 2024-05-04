@@ -143,10 +143,10 @@ export default function PatientRegister() {
               />
             </div>
           </div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Submit</button>
+          <button type="submit" className="bg-green-800 hover:bg-green-900 text-white px-4 py-2 rounded-md mt-4">Submit</button>
         </form>
 					<button
-						className="mt-6 rounded-md bg-green-800 hover:bg-green-900"
+						className="mt-6 rounded-md bg-blue-700 hover:bg-blue-800 "
 						onClick={handleReturnHome}
 					>
 						Return to Home Page

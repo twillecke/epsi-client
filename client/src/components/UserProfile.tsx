@@ -164,10 +164,10 @@ function UserProfile() {
 						Logout
 					</button>
 					<button
-						className="mt-6 rounded-md bg-slate-700 hover:bg-slate-800"
+						className="mt-6 rounded-md bg-green-700 hover:bg-green-800"
 						onClick={handleNewClient}
 					>
-						New Client
+						Create New Patient
 					</button>
 					<button
 						className="mt-6 rounded-md bg-red-800 hover:bg-red-900"
