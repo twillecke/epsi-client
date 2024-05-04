@@ -1,21 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import PatientService from "../services/PatientService";
+function PatientInfo({ patient, onDeletePatient }:any) {
 
-function PatientInfo({ patient }:any) {
-
-  const navigate = useNavigate();
-
-	function handleDeletePatient() {
-		const userData = JSON.parse(localStorage.getItem("username"));
-
-		if (userData) {
-			PatientService.deletePatientById(userData.userId, patient.cpf.value);
-			navigate("/user-profile");
-		} else {
-			console.error("User data not found in localStorage");
-		}
-	}
-
+  function handleDeletePatient() {
+    onDeletePatient(patient.cpf.value);
+  }
 
   return (
     <div className="bg-gray-700 mb-4 rounded-lg p-4 shadow-md">

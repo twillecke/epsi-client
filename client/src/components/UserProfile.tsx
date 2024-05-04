@@ -104,6 +104,24 @@ function UserProfile() {
 		fetchUserProfileData();
 	}, [navigate]);
 
+	function handleDeletePatient(cpf) {
+    const userData = JSON.parse(localStorage.getItem("username"));
+
+    if (userData) {
+      // Delete patient by CPF
+      PatientService.deletePatientById(userData.userId, cpf)
+        .then(() => {
+          // Update patients state after successful deletion
+          setPatients(patients.filter((patient) => patient.cpf.value !== cpf));
+        })
+        .catch((error) => {
+          console.error("Error deleting patient:", error);
+        });
+    } else {
+      console.error("User data not found in localStorage");
+    }
+  }
+
 	function handleLogOut() {
 		AuthService.logout();
 		navigate("/login");
@@ -136,7 +154,7 @@ function UserProfile() {
 					{/* <p>You're with us since: {currentUser.signup_date}</p> */}
 				</div>
 				<div className="rounded-t-xl mt-4 overflow-hidden bg-gradient-to-r">
-				<PatientProfile patients={patients}/>
+				<PatientProfile patients={patients} onDeletePatient={handleDeletePatient}/>
 				</div>
 				<div className="flex justify-between">
 					<button
