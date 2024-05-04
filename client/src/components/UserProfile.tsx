@@ -2,58 +2,21 @@ import { useEffect, useState } from "react";
 import AuthService from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
-import PatientProfile, { Patient, Patients } from "./PatientProfile";
+import PatientProfile, { Patients } from "./PatientProfile";
 import PatientService from "../services/PatientService";
 
 function UserProfile() {
 	const [userReady, setUserReady] = useState(false);
-	const [currentUser, setCurrentUser] = useState([]);
-	const [patients, setPatients] = useState<Patients>([]);
+	const [currentUser, setCurrentUser] = useState({
+		accessToken: {
+		},
+		email_address: "",
+		role: "",
+		userId: "",
+		username: "",
 
-	// const patients: Patients = [
-	// 	{
-	// 		"patientId": "25bac318-9fc2-43c6-aa3f-d02aeabd65ee",
-	// 		"psychologistId": "c9bfe8a8-5a44-4ce2-ba38-332dab616446",
-	// 		"name": {
-	// 			"value": "Mary Jane"
-	// 		},
-	// 		"birthdate": {
-	// 			"value": "1994-10-01"
-	// 		},
-	// 		"cpf": {
-	// 			"value": "05987559936"
-	// 		},
-	// 		"phone": "5548988444975",
-	// 		"emergencyPhone": "48998753364",
-	// 		"city": "Indaial",
-	// 		"province": "Santa Catarina",
-	// 		"emailAddress": {
-	// 			"value": "maryjane@mail.com"
-	// 		},
-	// 		"address": "Rua das Gaivotas, 1274"
-	// 	},
-	// 	{
-	// 		"patientId": "eff11a95-45c1-490f-b634-848a160d01ca",
-	// 		"psychologistId": "c9bfe8a8-5a44-4ce2-ba38-332dab616446",
-	// 		"name": {
-	// 			"value": "John Doe"
-	// 		},
-	// 		"birthdate": {
-	// 			"value": "1994-10-01"
-	// 		},
-	// 		"cpf": {
-	// 			"value": "45672354017"
-	// 		},
-	// 		"phone": "5548988444975",
-	// 		"emergencyPhone": "48998753364",
-	// 		"city": "Indaial",
-	// 		"province": "Santa Catarina",
-	// 		"emailAddress": {
-	// 			"value": "johndoe@mail.com"
-	// 		},
-	// 		"address": "Rua das Gaivotas, 1274"
-	// 	}
-	// ]
+	});
+	const [patients, setPatients] = useState<Patients>([]);
 
 	const navigate = useNavigate();
 
@@ -128,7 +91,7 @@ function UserProfile() {
 	}
 
 	function handleDeleteAccount() {
-		const userData = JSON.parse(localStorage.getItem("username"));
+    const userData = JSON.parse(localStorage.getItem("username") ?? "null");
 
 		if (userData) {
 			UserService.deleteUserProfile(userData.userId);

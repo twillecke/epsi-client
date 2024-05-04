@@ -27,7 +27,7 @@ export default function PatientRegister() {
   };
 
   const handleSubmit = (e:any) => {
-    const userData = JSON.parse(localStorage.getItem("username"));
+    const userData = JSON.parse(localStorage.getItem("username") ?? "null");
     if (!userData) {
       console.error("UserId not found");
       return;
