@@ -1,0 +1,1 @@
+Na foto a psicóloga Daniella Zichtl teste o aplicativo para gerenciamento de clínica psicológica.
